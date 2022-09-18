@@ -48,6 +48,7 @@ router.get("/:id", async (req, res) => {
         artItem = await getArtWithComments(artItem);
         return res.send(artItem);
     } catch(err) {
+        console.log(err);
         res.status(500);
         return res.send({msg: "Unable to get artData"});
     }
@@ -182,10 +183,12 @@ const getArtWithComments = async (artItem) => {
                 }
                 artItem.comments.push(comment);
             } else {
-                let comment = {
-                    id: responseData[i].users_user_id,
+                let comment;
+                comment = {
+                    id: responseData[i].comment_id,
                     name: responseData[i].comment_name,
-                    content: responseData[i].content
+                    content: responseData[i].content,
+                    userId: responseData[i].users_user_id
                 }
                 artItem.comments.push(comment);
             }

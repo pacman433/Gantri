@@ -1,4 +1,4 @@
 DB_USER=root
 DB_PASS=toor
 DB_NAME=the_tate_collection
-SERVER_PORT=5000
+SERVER_PORT=3000
