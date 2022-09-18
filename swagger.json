@@ -1,0 +1,372 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Gantri API project",
+        "description": "Sample API project",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "justin.michael.hutchens@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.11"
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    },
+    "servers": [
+    ],
+    "tags": [
+        {
+            "name": "Art APIs",
+            "description": "APIs for art in the system"
+        },
+        {
+            "name": "User APIs",
+            "description": "APIs for users in the system"
+        }
+    ],
+    "paths": {
+        "/api/art": {
+            "get": {
+                "tags": [
+                    "Art APIs"
+                ],
+                "summary": "Get art from the system",
+                "description": "Returns art from the system",
+                "operationId": "getArt",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/getArt"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/art/{artId}": {
+            "get": {
+                "tags": [
+                    "Art APIs"
+                ],
+                "summary": "Find art by ID",
+                "description": "Returns a piece of art",
+                "operationId": "getArtById",
+                "parameters": [
+                    {
+                        "name": "artId",
+                        "in": "path",
+                        "description": "ID of art to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/getArtById"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/art/{artId}/comments": {
+            "post": {
+                "tags": [
+                    "Art APIs"
+                ],
+                "summary": "Create a comment for a piece of art",
+                "description": "Adds a comment to a piece of art",
+                "operationId": "addCommentToArt",
+                "parameters": [
+                    {
+                        "name": "artId",
+                        "in": "path",
+                        "description": "ID of art to add comment to",
+                        "required": "true",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create a comment for a piece of art",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/addCommentToArt"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/createUser"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "User APIs"
+                ],
+                "summary": "Get users",
+                "description": "Get users from the system",
+                "operationId": "getUsers",
+                "responses": {
+                    "default": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/getUsers"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User APIs"
+                ],
+                "summary": "Create user",
+                "description": "Create a user in the system",
+                "operationId": "createUser",
+                "requestBody": {
+                    "description": "Created user object",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/createUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/createUserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "getArt": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 5
+                        },
+                        "title": {
+                            "type": "string",
+                            "example": "A peaceful sunrise"
+                        },
+                        "artist": {
+                            "type": "string",
+                            "example": "Monet"
+                        },
+                        "year": {
+                            "type": "integer",
+                            "example": 1882
+                        },
+                        "comments": {
+                            "type:": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "User Name"
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "Great use of colors!"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "getArtById": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "A peaceful sunrise"
+                    },
+                    "artist": {
+                        "type": "string",
+                        "example": "Monet"
+                    },
+                    "year": {
+                        "type": "integer",
+                        "example": 1882
+                    },
+                    "comments": {
+                        "type:": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": 10
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "User Name"
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "example": "Great use of colors!"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "getUsers": {
+                "type:": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "userId": {
+                            "type": "integer",
+                            "example": 10
+                        },
+                        "name": {
+                            "type": "string",
+                            "example": "User Name"
+                        },
+                        "age": {
+                            "type": "integer",
+                            "exapmle": 25
+                        },
+                        "location": {
+                            "type": "string",
+                            "example": "Denver"
+                        }
+                    }
+                }
+            },
+            "createUser": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "expample": "Your name"
+                    },
+                    "age": {
+                        "type": "integer",
+                        "example": 25
+                    },
+                    "location": {
+                        "type": "string",
+                        "expample": "New York"
+                    }
+                }
+            },
+            "addCommentToArt": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "example": "5"
+                    },
+                    "name": {
+                        "type": "name",
+                        "example": "User Name"
+                    },
+                    "content": {
+                        "type": "string",
+                        "example": "This is a test comment"
+                    }
+                }
+            },
+            "createUserResponse": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "example": 7
+                    }
+                }
+            }
+        },
+        "requestBodies": {
+            "Pet": {
+                "description": "Pet object that needs to be added to the store",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Pet"
+                        }
+                    },
+                    "application/xml": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Pet"
+                        }
+                    }
+                }
+            },
+            "UserArray": {
+                "description": "List of user object",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
