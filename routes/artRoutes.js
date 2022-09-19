@@ -178,6 +178,7 @@ const getArtWithComments = async (artItem) => {
             //Anonymous user
             if(responseData[i].users_user_id == 1) {
                 let comment = {
+                    id: responseData[i].comment_id,
                     name: responseData[i].comment_name,
                     content: responseData[i].content
                 }
