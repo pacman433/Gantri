@@ -35,7 +35,7 @@ This SQL file will import all of the art entries into your database along with t
 ## Setting up .env file
 
 The .env file is used to store sensitve information like usernames and passwords and system settings
-In order to use the application you need to set the following values in your .env file located in the root of the project directory
+In order to use the application you need to set the following values in a file titled .env located in the root of the project directory
 
 <pre>
 DB_USER=(your-user-name)
