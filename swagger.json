@@ -30,28 +30,6 @@
         }
     ],
     "paths": {
-        "/api/art": {
-            "get": {
-                "tags": [
-                    "Art APIs"
-                ],
-                "summary": "Get art from the system",
-                "description": "Returns art from the system",
-                "operationId": "getArt",
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/getArt"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/api/art/{artId}": {
             "get": {
                 "tags": [
