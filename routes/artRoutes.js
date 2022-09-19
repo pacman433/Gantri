@@ -172,7 +172,8 @@ const getArtWithComments = async (artItem) => {
     FROM art 
     JOIN comments ON art.art_id = comments.art_art_id 
     JOIN users ON comments.users_user_id = users.user_id
-    AND art.art_id = ${artItem.id}`);
+    AND art.art_id = ${artItem.id}
+    ORDER BY comments.comment_id`);
     if(responseData.length > 0) {
         for(let i=0; i<responseData.length; i++) {
             //Anonymous user
